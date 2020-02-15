@@ -2,3 +2,8 @@
   margin-left: 0;
   margin-right: auto;
 }
+
+.map_image {
+  background: white;
+  border-radius: 20px;
+}

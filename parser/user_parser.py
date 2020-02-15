@@ -1,8 +1,8 @@
 # coding=utf-8
 input = "../data/users.txt"
-users = open("users.csv", "w")
-rooms = open("rooms.csv", "w")
-places = open("places.csv", "w")
+users = open("users.csv", "w", encoding='utf-8')
+rooms = open("rooms.csv", "w", encoding='utf-8')
+places = open("places.csv", "w", encoding='utf-8')
 
 from transliterate import translit
 
@@ -21,9 +21,9 @@ for line in open(input, "r", encoding="utf-8"):
     if (len(line) == 0): continue
     lines.append(line)
 
-print("id,floor,name,type,x,y", file=rooms)
-print("id,email,password,surname,name", file=users)
-print("id,number,user_id,room_id", file=places)
+print("id;floor;name;type;x;y", file=rooms)
+print("id;email;password;surname;name", file=users)
+print("id;number;user_id;room_id", file=places)
 
 floor = -1
 place = ""
@@ -55,18 +55,18 @@ for j in range(len(lines)):
                 fr, to = map(int, place.split("-"))
                 for i in range(fr, to + 1):
                     id_rooms += 1
-                    print(id_rooms, floor, i, type, 0, 0, sep=',', file=rooms)
+                    print(id_rooms, floor, i, type, 0, 0, sep=';', file=rooms)
             else:
                 id_rooms += 1
-                print(id_rooms, floor, place, type, 0, 0, sep=',', file=rooms)
+                print(id_rooms, floor, place, type, 0, 0, sep=';', file=rooms)
     else:
         if ('-' in v[0]): continue
         id_users += 1
         if (len(v) == 1): v.append(v[0])
-        print(id_users, email(v[0], v[1]), "12345", v[0], v[1], sep=',', file=users)
+        print(id_users, email(v[0], v[1]), "12345", v[0], v[1], sep=';', file=users)
         id_places += 1
         cabinet += 1
-        print(id_places, cabinet, id_users, id_rooms, sep=",", file=places)
+        print(id_places, cabinet, id_users, id_rooms, sep=';', file=places)
 
 places.close()
 users.close()

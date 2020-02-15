@@ -12,6 +12,7 @@ def email(s, n):
     ret = ret.replace('\'', '')
     return ret
 
+
 id_users = 0
 id_places = 0
 id_rooms = 0
@@ -22,16 +23,15 @@ for line in open(input, "r", encoding="utf-8"):
     lines.append(line)
 
 print("id;floor;name;type;x;y", file=rooms)
-print("id;email;password;surname;name", file=users)
-print("id;number;user_id;room_id", file=places)
+print("id;email;password;surname;name;place_id", file=users)
+print("id;number;room_id", file=places)
 
 floor = -1
 place = ""
 type = ""
 cabinet = 0
 
-pl = {} # [place_id][room_id] = us
-
+pl = {}  # [place_id][room_id] = us
 
 for j in range(len(lines)):
     line = lines[j]
@@ -63,23 +63,11 @@ for j in range(len(lines)):
         if ('-' in v[0]): continue
         id_users += 1
         if (len(v) == 1): v.append(v[0])
-        print(id_users, email(v[0], v[1]), "12345", v[0], v[1], sep=';', file=users)
         id_places += 1
+        print(id_users, email(v[0], v[1]), "12345", v[0], v[1], id_places, sep=';', file=users)
         cabinet += 1
-        print(id_places, cabinet, id_users, id_rooms, sep=';', file=places)
+        print(id_places, cabinet, id_rooms, sep=';', file=places)
 
 places.close()
 users.close()
 rooms.close()
-
-
-
-
-
-
-
-
-
-
-
-

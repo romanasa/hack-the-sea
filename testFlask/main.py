@@ -26,3 +26,8 @@ def floor1():
 #@login_required
 def floor3():
     return render_template('floor3.html')
+
+
+@main.route('/room/<room_name>')
+def show(room_name):
+    return render_template('room.html', name=room_name)

@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -32,6 +32,15 @@ def create_app():
     # blueprint for non-auth parts of app
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    @app.before_request
+    def before_request():
+        allow = ['auth.settings', 'auth.settings_post', 'auth.logout']
+        if request.endpoint not in allow and \
+                current_user.is_authenticated and\
+                (current_user.name is None or current_user.surname is None):
+            flash('Пожалуйста, заполните информацию')
+            return redirect(url_for('auth.settings'))
 
     return app
 

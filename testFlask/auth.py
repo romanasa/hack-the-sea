@@ -48,6 +48,11 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
+
+    if user.surname is None or user.name is None:
+        flash('Пожалуйста, заполните информацию')
+        return redirect(url_for('auth.settings'))
+
     return redirect(url_for('main.profile'))
 
 
@@ -86,8 +91,6 @@ def settings_post():
     if place is None:
         flash('Места не существует')
         return redirect(url_for('auth.settings'))
-
-    x = room.places
 
     if current_user.name is None:
         current_user.name = request.form.get('name')

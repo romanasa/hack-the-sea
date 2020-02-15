@@ -29,5 +29,10 @@ def floor3():
 
 
 @main.route('/room/<room_name>')
-def show(room_name):
+def show_room(room_name):
     return render_template('room.html', name=room_name)
+
+
+@main.route('/antresol/<antresol_name>')
+def show_antresol(antresol_name):
+    return render_template('antresol.html', name=antresol_name)

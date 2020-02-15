@@ -25,7 +25,7 @@ class Room(db.Model):
     type = db.Column(db.String(100))
     x = db.Column(db.Integer)
     y = db.Column(db.Integer)
-    floor = db.Column(db.Integer)
+    floor = db.Column(db.String(100))
 
     places = db.relationship("Place", backref="room", lazy=True)
 
@@ -35,7 +35,7 @@ class Place(db.Model):
     __table_args__ = {"extend_existing": True}
     id = db.Column(db.Integer, primary_key=True)
 
-    number = db.Column(db.Integer)
+    number = db.Column(db.String(100))
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))

@@ -14,3 +14,13 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
+
+@main.route('/floor1')
+#@login_required
+def floor1():
+    return render_template('floor1.html')
+
+@main.route('/floor3')
+#@login_required
+def floor3():
+    return render_template('floor3.html')

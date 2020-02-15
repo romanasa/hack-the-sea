@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from testFlask import db
-from testFlask.models import User
-from flask_login import login_user, login_required, logout_user
+from testFlask.models import User, Room, Place
+from flask_login import login_user, login_required, logout_user, current_user
 #hello
 auth = Blueprint('auth', __name__)
 
@@ -60,4 +60,35 @@ def signup():
 @login_required
 def logout():
     logout_user()
+    return redirect(url_for('main.index'))
+
+
+@auth.route('/settings')
+@login_required
+def settings():
+    return render_template('settings.html')
+
+
+@auth.route('/settings', methods=['POST'])
+@login_required
+def settings_post():
+    room_num = request.form.get('room_num')
+    place_num = request.form.get('place_num')
+
+    room = Room.query.filter_by(name=room_num).first()
+    if room is None:
+        flash('Комнаты не существует')
+        return redirect(url_for('auth.settings'))
+
+    place = Place.join(Room, Place.room_id == Room.id).query \
+        .filter(Place.number == place_num).filter(Room.name == room_num).first()
+
+    if place is None:
+        flash('Места не существует')
+        return redirect(url_for('auth.settings'))
+
+    current_user.name = request.form.get('name')
+    current_user.surname = request.form.get('surname')
+    current_user.place = place
+
     return redirect(url_for('main.index'))

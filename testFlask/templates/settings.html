@@ -2,30 +2,35 @@
 
 {% block content %}
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Sign Up</h3>
+    <h3 class="title">Персональные данные</h3>
     <div class="box">
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="notification is-danger">
-                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+                {{ messages[0] }}.
             </div>
         {% endif %}
         {% endwith %}
 
         <form method="POST" action="/settings">
 
+
+            {% if not current_user.name %}
             <div class="field">
                 <div class="control">
                     <input class="input is-large" type="text" name="name" placeholder="Имя" autofocus="">
                 </div>
             </div>
+            {% endif %}
 
+            {% if not current_user.surname %}
             <div class="field">
                 <div class="control">
                     <input class="input is-large" type="text" name="surname" placeholder="Фамилия" autofocus="">
                 </div>
             </div>
+            {% endif %}
 
             <div class="field">
                 <div class="control">
@@ -39,7 +44,7 @@
                 </div>
             </div>
 
-            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+            <button class="button is-block is-info is-large is-fullwidth">Сохранить</button>
         </form>
     </div>
 </div>

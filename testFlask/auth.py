@@ -80,15 +80,19 @@ def settings_post():
         flash('Комнаты не существует')
         return redirect(url_for('auth.settings'))
 
-    place = Place.join(Room, Place.room_id == Room.id).query \
+    place = Place.query.join(Room, Place.room_id == Room.id) \
         .filter(Place.number == place_num).filter(Room.name == room_num).first()
 
     if place is None:
         flash('Места не существует')
         return redirect(url_for('auth.settings'))
 
-    current_user.name = request.form.get('name')
-    current_user.surname = request.form.get('surname')
-    current_user.place = place
+    x = room.places
 
+    if current_user.name is None:
+        current_user.name = request.form.get('name')
+    if current_user.surname is None:
+        current_user.surname = request.form.get('surname')
+
+    current_user.place = place
     return redirect(url_for('main.index'))

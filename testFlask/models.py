@@ -14,6 +14,8 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(100))
     place_id = db.Column(db.Integer, db.ForeignKey('place.id'))
 
+    full_name = db.Column(db.String(100))
+
 
 class Room(db.Model):
     __tablename__ = "room"

@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     surname = db.Column(db.String(100))
     name = db.Column(db.String(100))
 
-    place = db.relationship("Place", uselist=False, back_populates="user")
+    place = db.relationship("Place", backref="user", uselist=False)
 
 
 class Room(db.Model):
@@ -27,7 +27,7 @@ class Room(db.Model):
     y = db.Column(db.Integer)
     floor = db.Column(db.Integer)
 
-    place = db.relationship("Place", back_populates="room")
+    places = db.relationship("Place", backref="room", lazy=True)
 
 
 class Place(db.Model):
@@ -37,5 +37,5 @@ class Place(db.Model):
 
     number = db.Column(db.Integer)
 
-    user = db.relationship("User", back_populates="place")
-    room = db.relationship("Room", back_populates="place")
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    room_id = db.Column(db.Integer, db.ForeignKey('room.id'))

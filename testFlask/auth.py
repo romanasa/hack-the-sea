@@ -10,8 +10,8 @@ auth = Blueprint('auth', __name__)
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     email = request.form.get('email')
-    name = request.form.get('name')
     password = request.form.get('password')
+    confirm = request.form.get('confirm')
 
     user = User.query.filter_by(email=email).first()
 
@@ -19,7 +19,12 @@ def signup_post():
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    if password != confirm:
+        flash('Passwords must be equal')
+        return redirect(url_for('auth.signup'))
+
+    new_user = User(email=email, password=generate_password_hash(password, method='sha256'), surname=None,
+                    name=None, place=None)
 
     db.session.add(new_user)
     db.session.commit()

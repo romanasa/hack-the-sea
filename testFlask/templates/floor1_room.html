@@ -2,35 +2,35 @@
 
 {% block content %}
 
-<h1 class="title">
-    Этаж 1
-</h1>
+    <h1 class="title">
+        Этаж 1
+    </h1>
 
     <div class="buttons is-fullwidth is-centered">
         <a href="/floor1">
-            <button class="button is-primary is-inverted is-outlined is-large">назад</button>
+            <button class="button is-primary is-inverted is-outlined is-large">на этаж</button>
         </a>
         {% if name > "104" %}
             {% if name < "109" %}
-            <a href="/room/{{ name }}">
-                <button class="button is-primary is-large"> в команту {{ name }}</button>
-            </a>
+                <a href="/room/{{ name }}">
+                    <button class="button is-primary is-large"> в комнату {{ name }}</button>
+                </a>
             {% endif %}
         {% endif %}
     </div>
 
-<div class="map_image">
+    <div class="map_image">
 
-    <img src="..\static\colored_places\{{ name }}.svg" alt="floor_1"/>
+        <img src="..\static\colored_places\{{ name }}.svg" alt="floor_1"/>
 
-</div>
+    </div>
 
-<a href="#" class="overlay" id="notify"></a>
-<div class="notification popup is-primary is-light" style="margin-top: 10%">
-    <div><b>{{ full_name }}</b></div>
-    {% for line in text %}
-    <div>{{ line }}</div>
-    {% endfor %}
-</div>
+    <a href="#" class="overlay" id="notify"></a>
+    <div class="notification popup is-primary is-light" style="margin-top: 10%">
+        <div><b>{{ full_name }}</b></div>
+        {% for line in text %}
+            <div>{{ line }}</div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

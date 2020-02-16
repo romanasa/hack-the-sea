@@ -23,8 +23,8 @@
 
     <img src="..\static\colored_places\{{ name }}.svg" alt="floor_1"/>
 
-    <a href="#" class="overlay" id="place{{ name }}"></a>
-    <div class="notification popup is-primary is-light">
+    <a href="#" class="overlay" id="notify"></a>
+    <div class="notification popup is-primary is-light" style="margin-top: 10%;">
         <div><b>Комната {{ name }}</b></div>
         {% for line in text %}
             <div>{{ line }}</div>

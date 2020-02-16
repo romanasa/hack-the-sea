@@ -111,8 +111,15 @@ def show_user_antresol(antresol_name, number):
 
 
 @main.route('/floor1/<room_name>')
-def show_floor1_room(room_name):
-    return render_template('floor1_room.html', name=room_name)
+def show_floor1_room_notif(room_name):
+    room = Room.query.filter_by(name=room_name).first()
+    places = Place.query.filter_by(room_id=room.id).all()
+    text = []
+    for place in places:
+        users = place.users
+        for user in users:
+            text += [user.name + " " + user.surname + " " + user.email]
+    return render_template('floor1_room.html', name=room_name, text=text)
 
 
 @main.route("/search")

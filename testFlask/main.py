@@ -61,13 +61,14 @@ def find_path():
     room_from = Room.query.filter_by(name=c_from).first()
     if room_from is None:
         flash('Начальной комнаты не существует')
-        return redirect(url_for('auth.navigation'))
+        return redirect(url_for('main.navigate'))
     room_to = Room.query.filter_by(name=c_to).first()
     if room_to is None:
         flash('Конечной комнаты не существует')
-        return redirect(url_for('auth.navigation'))
+        return redirect(url_for('main.navigate'))
 
-    return redirect(url_for('auth.login'))
+    flash('Простите, не получилось построить маршрут')
+    return redirect(url_for('main.navigate'))
 
 
 # @main.route('/room/<room_name>/<number>')

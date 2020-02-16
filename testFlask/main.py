@@ -130,7 +130,6 @@ def show_floor1_room_notif(room_name):
             text = ['Пустая комната']
         name_ = 'Комната ' + room_name + ' ' + room.type
     else:
-        text = []
         if room_name.startswith('lyft'):
             name_ = 'Лифт'
         elif room_name.startswith('stairs'):
@@ -153,7 +152,6 @@ def show_floor3_room_notif(room_name):
             text = ['Пустая комната']
         name_ = 'Комната ' + room_name + ' ' + room.type
     else:
-        text = []
         if room_name.startswith('lyft'):
             name_ = 'Лифт'
         elif room_name.startswith('stairs'):

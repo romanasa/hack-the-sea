@@ -8,7 +8,9 @@ class AlchemyEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj.__class__, DeclarativeMeta):
             # an SQLAlchemy class
-            fields = {}
+            fields = {"room": Room.query.filter_by(
+                id=Place.query.filter_by(id=obj.place_id).first().room_id).first().name,
+                      "place": Place.query.filter_by(id=obj.place_id).first().number}
             for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
                 data = obj.__getattribute__(field)
                 try:

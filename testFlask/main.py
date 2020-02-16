@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, after_this_request
+from flask import Blueprint, render_template, request, redirect, url_for, after_this_request, flash
 from flask import session
 
 from testFlask import db
@@ -48,6 +48,31 @@ def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name)
 
 
+@main.route('/navigation')
+def navigate():
+    return render_template('navigation.html')
+
+
+@main.route('/navigation', methods=['POST'])
+def find_path():
+    c_from = request.form.get('from')
+    c_to = request.form.get('to')
+
+    room_from = Room.query.filter_by(name=c_from).first()
+    if room_from is None:
+        flash('Начальной комнаты не существует')
+        return redirect(url_for('auth.navigation'))
+    room_to = Room.query.filter_by(name=c_to).first()
+    if room_to is None:
+        flash('Конечной комнаты не существует')
+        return redirect(url_for('auth.navigation'))
+
+    return redirect(url_for('auth.login'))
+
+
+# @main.route('/room/<room_name>/<number>')
+# def show_user(room_name, number):
+#     users = User.query.filter_by(room_id)
 @main.route('/room/<room_name>/<number>')
 def show_user(room_name, number):
     # users = User.query.filter_by(room_id)

@@ -57,3 +57,35 @@
 .is-fixed-top {
   background: #00d2b4;
 }
+
+.crop{
+	float:left;
+	margin:.5em 10px .5em 0;
+	overflow:hidden; /* this is important */
+	position:relative; /* this is important too */
+	border:1px solid #ccc;
+	width:200px;
+	height:120px;
+	}
+.crop img{
+	position:absolute;
+	top:-40px;
+	left:-50px;
+	}
+
+
+.navbar-menu {
+    color: black;
+    background: white;
+}
+
+.navbar-menu .navbar-end .navbar-item .navbar-link {
+    color: black;
+    background: white;
+}
+
+
+.navbar-menu .navbar-end .navbar-item .navbar-dropdown {
+    color: black;
+    background: white;
+}

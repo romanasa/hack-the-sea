@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8">
@@ -11,32 +11,48 @@
 
 <body>
     <section class="hero is-primary is-fullheight">
-    <nav class="navbar is-danger is-fixed-top" role="navigation">
-        <div class="navbar-brand is-fixed-top">
-            <div class="navbar-burger burger" data-target="navMenu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+            <a class="navbar-item" href="{{ url_for('main.index') }}">Home</a>
+
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('main.profile') }}" class="navbar-item">Profile</a>
+            {% endif %}
+
+
+               {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.login') }}" class="navbar-item">Login</a>
+                    <a href="{{ url_for('auth.signup') }}" class="navbar-item">Sign Up</a>
+              {% endif %}
+
+
+              {% if current_user.is_authenticated %}
+              <a href="{{ url_for('auth.logout') }}" class="navbar-item">Logout</a>
+              {% endif %}
+
         </div>
-        <div class="navbar-menu is-fixed-top" id="navMenu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="{{ url_for('main.index') }}">Home</a>
-                {% if current_user.is_authenticated %}
-                <a href="{{ url_for('main.profile') }}" class="navbar-item">Profile</a>
-                {% endif %}
 
-                {% if not current_user.is_authenticated %}
-                <a href="{{ url_for('auth.login') }}" class="navbar-item">Login</a>
-                <a href="{{ url_for('auth.signup') }}" class="navbar-item">Sign Up</a>
-                {% endif %}
-
-
-                {% if current_user.is_authenticated %}
-                <a href="{{ url_for('auth.logout') }}" class="navbar-item">Logout</a>
-                {% endif %}
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-link">Search</div>
+                    <div class="navbar-dropdown is-right">
+                        <input type="text"onkeyup="liveSearch(this.value)"> <!-- Assigns the key up event to call the liveSearch() function -->
+                            <div id="results"></div> <!-- Results will be printed here -->
+                        </input>
+                    </div>
             </div>
-        </div>
+         </div>
+      </div>
     </nav>
 
         <div class="hero-body">
@@ -46,8 +62,35 @@
             </div>
         </div>
     </section>
+
 </body>
-</html>
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+    function liveSearch(value){
+        value = value.trim(); // remove any spaces around the text
+        if(value !== ""){ // don't make requests with an empty string
+            $.ajax({
+                url: "search",
+                data: {searchText: value},
+                dataType: "json",
+                success: function(data){
+                    var res = "";
+                    // create the html with results
+                    for(i in data.results){
+                        res += "<div>"+data.results[i]["name"] +" " +
+								data.results[i]["surname"]+ "</div>";
+                    }
+                    $("#results").html(res);
+                }
+
+            });
+        }
+        else{
+            $("#results").html(""); // set the results empty in case of empty string
+        }
+    }
+</script>
 
 <script>
     // Get all "navbar-burger" elements
@@ -71,3 +114,5 @@
       });
     }
 </script>
+
+</html>

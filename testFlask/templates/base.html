@@ -78,11 +78,12 @@
                     // create the html with results
                     for(i in data.results){
 
-                            var floor = data.results[i]["room"][0];
-                        if (data.results[i]["place_num"] !== "") {
+                        var floor = data.results[i]["room"][0];
+                        var room = data.results[i]["room"];
 
+                        if (data.results[i]["place_num"] !== "") {
                             if (data.results[i]["place_num"] !== "-1") {
-                                var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
+                                var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"] + "#notify";
                                 res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
                                     data.results[i]["surname"] + "</a></div>";
                             } else {

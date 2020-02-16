@@ -6,31 +6,27 @@
         Этаж 1
     </h1>
 
-    <div class="buttons is-fullwidth is-centered">
-        <a href="/floor1">
-            <button class="button is-primary is-inverted is-outlined is-large">на этаж</button>
-        </a>
-        {% if name > "104" %}
-            {% if name < "109" %}
-                <a href="/room/{{ name }}">
-                    <button class="button is-primary is-large"> в комнату {{ name }}</button>
-                </a>
-            {% endif %}
-        {% endif %}
-    </div>
-
     <div class="map_image">
 
         <img src="..\static\colored_places\{{ name }}.svg" alt="floor_1"/>
 
     </div>
 
-    <a href="#" class="overlay" id="notify"></a>
-    <div class="notification popup is-primary is-light" style="margin-top: 10%">
+    <a href="/floor1" class="overlay" id="notify"></a>
+    <div class="notification popup is-primary is-light" style="margin-top: 5%">
         <div><b>{{ full_name }}</b></div>
         {% for line in text %}
             <div>{{ line }}</div>
         {% endfor %}
+
+        {% if name > "104" %}
+            {% if name < "109" %}
+        <br>
+                <a href="/room/{{ name }}">
+                    <button class="button is-white"> перейти в комнату </button>
+                </a>
+            {% endif %}
+        {% endif %}
     </div>
 
 {% endblock %}

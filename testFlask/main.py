@@ -8,29 +8,24 @@ import json
 
 main = Blueprint('main', __name__)
 
-
 @main.route('/')
 def index():
     return render_template('floor1.html')
-
 
 @main.route('/profile')
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
 
-
 @main.route('/floor1')
 # @login_required
 def floor1():
     return render_template('floor1.html')
 
-
 @main.route('/floor3')
 # @login_required
 def floor3():
     return render_template('floor3.html')
-
 
 @main.route('/room/<room_name>')
 def show_room(room_name):
@@ -165,7 +160,6 @@ def show_floor3_room_notif(room_name):
             name_ = 'Лестница'
         text = ['спуститься']
     return render_template('floor3_room.html', name=room_name, full_name=name_, text=text)
-
 
 @main.route("/search")
 def search():

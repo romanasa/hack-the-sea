@@ -147,7 +147,7 @@ def show_floor1_room_notif(room_name):
         return render_template('floor1_room.html', name=room_name, full_name=name_, text=text,
                                name2=room_name2, full_name2=name_2, text2=text2)
     else:
-        room_name, name_, text = get(room_name, 'спуститься')
+        room_name, name_, text = get(room_name, 'подняться')
         return render_template('floor1_room.html', name=room_name, full_name=name_, text=text, name2=None)
 
 

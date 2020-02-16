@@ -52,11 +52,11 @@
     {% if number %}
      <a href="#" class="overlay" id="place{{number}}"></a>
     <div class="notification popup is-primary is-light">
+        <div><b>Место {{number}}</b></div>
         {% for line in text %}
             <div>{{ line }}</div>
         {% endfor %}
 <!--        {{text}}-->
-        <a class="close" title="Закрыть" href="#"><button class="delete"></button></a>
     </div>
     {% endif %}
 

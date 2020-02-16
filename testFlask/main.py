@@ -127,6 +127,8 @@ def show_floor1_room_notif(room_name):
         text = []
         if room_name.startswith('lyft'):
             name_ = 'Лифт'
+        elif room_name.startswith('stairs'):
+            name_ = 'Лестница'
     return render_template('floor1_room.html', name=room_name, full_name=name_, text=text)
 
 
@@ -145,6 +147,8 @@ def show_floor3_room_notif(room_name):
         text = []
         if room_name.startswith('lyft'):
             name_ = 'Лифт'
+        elif room_name.startswith('stairs'):
+            name_ = 'Лестница'
     return render_template('floor3_room.html', name=room_name, full_name=name_, text=text)
 
 

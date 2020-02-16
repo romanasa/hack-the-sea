@@ -2,12 +2,15 @@ from flask import Flask, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 
+
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
 
 
 def create_app():
     app = Flask(__name__)
+    # sess = Session()
+    # sess.init_app(app)
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'

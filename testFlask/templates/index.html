@@ -27,8 +27,11 @@
                     var res = "";
                     // create the html with results
                     for(i in data.results){
-                        res += "<div>"+data.results[i]["name"] +" " +
-								data.results[i]["surname"]+ "</div>";
+
+                    	var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place"];
+
+                        res += "<a href=" + link + ">"+data.results[i]["name"] +" " +
+								data.results[i]["surname"]+ "</a>";
                     }
                     $("#results").html(res);
                 }

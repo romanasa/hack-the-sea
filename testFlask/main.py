@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
+from flask import session
+
 from testFlask import db
 from flask_login import login_required, current_user
-from testFlask.models import User, AlchemyEncoder
+from testFlask.models import User, AlchemyEncoder, Place
 import json
 
 main = Blueprint('main', __name__)
@@ -32,7 +34,13 @@ def floor3():
 
 @main.route('/room/<room_name>')
 def show_room(room_name):
-    return render_template('room.html', name=room_name)
+    return render_template('room.html', name=room_name, number=session['number'],
+                           text=session['text'])
+
+#
+# @main.route('/room/x')
+# def show_room(room_name, place):
+#     return render_template('room.html', name=room_name, place=place)
 
 
 @main.route('/antresol/<antresol_name>')
@@ -40,9 +48,17 @@ def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name)
 
 
-# @main.route('/room/<room_name>/<number>')
-# def show_user(room_name, number):
-#     users = User.query.filter_by(room_id)
+@main.route('/room/<room_name>/<number>')
+def show_user(room_name, number):
+    # users = User.query.filter_by(room_id)
+    session['number'] = number
+    users = Place.query.filter_by(id=int(number)).first().users
+    text = []
+    for user in users:
+        text += [user.name + " " + user.surname + " " + user.email]
+    session['text'] = text
+    return redirect('/room/' + room_name + '#place' + number)
+    # return render_template('room.html', name=room_name)
 
 
 @main.route("/search")

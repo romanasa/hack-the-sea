@@ -17,11 +17,11 @@ def signup_post():
     user = User.query.filter_by(email=email).first()
 
     if user:
-        flash('Email address already exists')
+        flash('Пользователь с таким e-mail уже существует')
         return redirect(url_for('auth.signup'))
 
     if password != confirm:
-        flash('Passwords must be equal')
+        flash('Пароли не совпадают')
         return redirect(url_for('auth.signup'))
 
     new_user = User(email=email, password=generate_password_hash(password, method='sha256'), surname=None,
@@ -45,7 +45,7 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
     if not user or not check_password_hash(user.password, password):
-        flash('Invalid email or password')
+        flash('Некорректный e-mail или пароль')
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)

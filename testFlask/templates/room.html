@@ -57,12 +57,14 @@
 
 
     {% if number %}
-        <a href="#" class="overlay" id="place{{ number }}"></a>
-        <div class="notification popup is-primary is-light">
-            {% for line in text %}
-                <div>{{ line }}</div>
-            {% endfor %}
-        </div>
+     <a href="#" class="overlay" id="place{{number}}"></a>
+    <div class="notification popup is-primary is-light">
+        <div><b>Место {{number}}</b></div>
+        {% for line in text %}
+            <div>{{ line }}</div>
+        {% endfor %}
+<!--        {{text}}-->
+    </div>
     {% endif %}
 
 {% endblock %}

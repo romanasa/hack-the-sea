@@ -11,7 +11,8 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return redirect(url_for('main.floor1'))
+    # return render_template('index.html')
 
 
 @main.route('/profile')
@@ -81,7 +82,6 @@ def show_user(room_name, number):
 
     place = Place.query.join(Room, Place.room_id == Room.id) \
         .filter(Place.number == number).filter(Room.name == room_name).first()
-    users = None
     text = []
     if place is not None:
         users = place.users
@@ -89,7 +89,7 @@ def show_user(room_name, number):
             text += [user.name + " " + user.surname + " " + user.email]
         session['text'] = text
         return redirect('/room/' + room_name + '#place' + number)
-    return render_template('room.html', name=room_name)
+    return redirect('/room/{}'.format(room_name))
 
 
 @main.route("/search")
@@ -98,8 +98,8 @@ def search():
     # create an array with the elements of BRAZIL_STATES that contains the string
     # the case is ignored
     result = User.query.filter(User.full_name.like(text.lower())).all()[:10]
-    if len(result) == 0:
-        result = [User(name="Не найдено", surname="")]
+    # if len(result) == 0:
+    #     result = [User(name="Не найдено", surname="")]
     # result = [c for c in BRAZIL_STATES if text.lower() in c.lower()]
     # return as JSON
     return json.dumps({"results": result}, cls=AlchemyEncoder)

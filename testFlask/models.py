@@ -9,11 +9,15 @@ class AlchemyEncoder(json.JSONEncoder):
         if isinstance(obj.__class__, DeclarativeMeta):
             # an SQLAlchemy class
             fields = {}
-            place = Place.query.filter_by(id=obj.place_id).first()
-            fields["room"] = Room.query.filter_by(
-                id=place.room_id).first().name
-            fields["place_num"] = str(place.number)
-            for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
+            pole = [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']
+            if "full_name" in pole:
+                place = Place.query.filter_by(id=obj.place_id).first()
+                fields["room"] = Room.query.filter_by(id=place.room_id).first().name
+                fields["place_num"] = str(place.number)
+            else:
+                fields["room"] = obj.name
+                fields["place_num"] = ""
+            for field in pole:
                 data = obj.__getattribute__(field)
                 try:
                     json.dumps(data) # this will fail on non-encodable values, like other classes
@@ -53,6 +57,7 @@ class Room(db.Model):
     floor = db.Column(db.String(100))
 
     places = db.relationship("Place", backref="room", lazy=True)
+    full_type = db.Column(db.String(100))
 
 
 class Place(db.Model):

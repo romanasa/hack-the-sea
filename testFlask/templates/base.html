@@ -29,7 +29,6 @@
             <a href="{{ url_for('main.profile') }}" class="navbar-item">Profile</a>
             {% endif %}
 
-
                {% if not current_user.is_authenticated %}
                     <a href="{{ url_for('auth.login') }}" class="navbar-item">Login</a>
                     <a href="{{ url_for('auth.signup') }}" class="navbar-item">Sign Up</a>
@@ -78,11 +77,16 @@
                     var res = "";
                     // create the html with results
                     for(i in data.results){
+                        if (data.results[i]["place_num"] !== "") {
+                            var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
 
-                    	var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
-
-                        res += "<div><a href=" + link + ">"+data.results[i]["name"] +" " +
-								data.results[i]["surname"]+ "</a></div>";
+                            res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                                data.results[i]["surname"] + "</a></div>";
+                        } else {
+                            var link = "/room/" + data.results[i]["room"];
+                            res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                                data.results[i]["type"] + "</a></div>";
+                        }
                     }
                     $("#results").html(res);
                 }

@@ -16,7 +16,14 @@
     <div class="notification popup is-primary is-light" style="margin-top: 5%">
         <a href="/floor1/{{ name }}" title="Поделиться комнатой"><b>{{ full_name }}</b></a>
         {% for line in text %}
-            <div>{{ line }}</div>
+            {% if line == "подняться" %}
+                <br><br>
+                <a href="/floor3">
+                    <button class="button is-white">{{ line }}</button>
+                </a>
+            {% elif line != "подняться" %}
+                <div>{{ line }}</div>
+            {% endif %}
         {% endfor %}
 
         {% if name > "104" %}

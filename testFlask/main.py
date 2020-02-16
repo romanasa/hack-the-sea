@@ -21,13 +21,13 @@ def profile():
 
 
 @main.route('/floor1')
-#@login_required
+# @login_required
 def floor1():
     return render_template('floor1.html')
 
 
 @main.route('/floor3')
-#@login_required
+# @login_required
 def floor3():
     return render_template('floor3.html')
 
@@ -37,7 +37,8 @@ def show_room(room_name):
     if room_name[-1] == 'А':
         return redirect('/antresol/' + room_name[:-1])
     return render_template('room.html', name=room_name, number=session.get('number', None),
-                           text=session.get('text', None), type=session.get('type', None), floor = room_name[0])
+                           text=session.get('text', None), type=session.get('type', None), floor=room_name[0])
+
 
 #
 # @main.route('/room/x')
@@ -48,7 +49,7 @@ def show_room(room_name):
 @main.route('/antresol/<antresol_name>')
 def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name, number=session.get('number', None),
-                           text=session.get('text', None), type=session.get('type', None), floor = antresol_name[0])
+                           text=session.get('text', None), type=session.get('type', None), floor=antresol_name[0])
 
 
 @main.route('/navigation')
@@ -139,6 +140,7 @@ def show_floor1_room_notif(room_name):
             name_ = 'Лифт'
         elif room_name.startswith('stairs'):
             name_ = 'Лестница'
+        text = ['подняться']
     return render_template('floor1_room.html', name=room_name, full_name=name_, text=text)
 
 
@@ -161,6 +163,7 @@ def show_floor3_room_notif(room_name):
             name_ = 'Лифт'
         elif room_name.startswith('stairs'):
             name_ = 'Лестница'
+        text = ['спуститься']
     return render_template('floor3_room.html', name=room_name, full_name=name_, text=text)
 
 
@@ -183,4 +186,3 @@ def search():
     # result = [User(name="Не найдено", surname="")]
     # result = [c for c in BRAZIL_STATES if text.lower() in c.lower()]
     # return as JSON
-

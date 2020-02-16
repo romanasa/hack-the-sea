@@ -116,8 +116,7 @@ def show_user_antresol(antresol_name, number):
     return redirect('/antresol/{}'.format(antresol_name))
 
 
-@main.route('/floor1/<room_name>')
-def show_floor1_room_notif(room_name):
+def get(room_name, text_stair):
     room = Room.query.filter_by(name=room_name).first()
     if room is not None:
         places = Place.query.filter_by(room_id=room.id).all()
@@ -126,38 +125,42 @@ def show_floor1_room_notif(room_name):
             users = place.users
             for user in users:
                 text += [user.name + " " + user.surname + " " + user.email]
-        if not text:
+        if not text and room_name != '113-114' and room_name != '132-133'\
+                and room_name != '309-310' and room_name != '323-324':
             text = ['Пустая комната']
         name_ = 'Комната ' + room_name + ' ' + room.type
     else:
+        name_ = 'Проиграл'
         if room_name.startswith('lyft'):
             name_ = 'Лифт'
         elif room_name.startswith('stairs'):
             name_ = 'Лестница'
-        text = ['подняться']
-    return render_template('floor1_room.html', name=room_name, full_name=name_, text=text)
+        text = [text_stair]
+    return room_name, name_, text
+
+
+@main.route('/floor1/<room_name>')
+def show_floor1_room_notif(room_name):
+    if '.' in room_name:
+        room_name2, name_2, text2 = get(room_name.split('.')[1], 'подняться')
+        room_name, name_, text = get(room_name.split('.')[0], 'подняться')
+        return render_template('floor1_room.html', name=room_name, full_name=name_, text=text,
+                               name2=room_name2, full_name2=name_2, text2=text2)
+    else:
+        room_name, name_, text = get(room_name, 'спуститься')
+        return render_template('floor1_room.html', name=room_name, full_name=name_, text=text, name2=None)
 
 
 @main.route('/floor3/<room_name>')
 def show_floor3_room_notif(room_name):
-    room = Room.query.filter_by(name=room_name).first()
-    if room is not None:
-        places = Place.query.filter_by(room_id=room.id).all()
-        text = []
-        for place in places:
-            users = place.users
-            for user in users:
-                text += [user.name + " " + user.surname + " " + user.email]
-        if not text:
-            text = ['Пустая комната']
-        name_ = 'Комната ' + room_name + ' ' + room.type
+    if '.' in room_name:
+        room_name2, name_2, text2 = get(room_name.split('.')[1], 'спуститься')
+        room_name, name_, text = get(room_name.split('.')[0], 'спуститься')
+        return render_template('floor3_room.html', name=room_name, full_name=name_, text=text,
+                               name2=room_name2, full_name2=name_2, text2=text2)
     else:
-        if room_name.startswith('lyft'):
-            name_ = 'Лифт'
-        elif room_name.startswith('stairs'):
-            name_ = 'Лестница'
-        text = ['спуститься']
-    return render_template('floor3_room.html', name=room_name, full_name=name_, text=text)
+        room_name, name_, text = get(room_name, 'спуститься')
+        return render_template('floor3_room.html', name=room_name, full_name=name_, text=text, name2=None)
 
 @main.route("/search")
 def search():

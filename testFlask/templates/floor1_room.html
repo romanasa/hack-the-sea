@@ -30,9 +30,32 @@
             {% if name < "109" %}
                 <br>
                 <a href="/room/{{ name }}">
-                    <button class="button is-white"> перейти в комнату </button>
+                    <button class="button is-white">перейти в комнату</button>
                 </a>
             {% endif %}
+        {% endif %}
+        {% if name2 != None %}
+        <br><br>
+        <a href="/floor1/{{ name2 }}" title="Поделиться комнатой"><b>{{ full_name2 }}</b></a>
+        {% for line in text2 %}
+            {% if line == "подняться" %}
+                <br><br>
+                <a href="/floor3">
+                    <button class="button is-white">{{ line }}</button>
+                </a>
+            {% elif line != "подняться" %}
+                <div>{{ line }}</div>
+            {% endif %}
+        {% endfor %}
+
+        {% if name > "104" %}
+            {% if name < "109" %}
+                <br>
+                <a href="/room/{{ name2 }}">
+                    <button class="button is-white">перейти в комнату</button>
+                </a>
+            {% endif %}
+        {% endif %}
         {% endif %}
     </div>
 

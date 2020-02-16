@@ -2,37 +2,61 @@
 
 {% block content %}
 
-    <h1 class="title">
-        Этаж 3
-    </h1>
-    <div class="map_image">
+<h1 class="title">
+    Этаж 3
+</h1>
+<div class="map_image">
 
-        <img src="..\static\colored_places\{{ name }}.svg" alt="floor_3"/>
+    <img src="..\static\colored_places\{{ name }}.svg" alt="floor_3"/>
 
-    </div>
+</div>
 
-    <a href="/floor3" class="overlay" id="notify"></a>
-    <div class="notification popup is-primary is-light" style="margin-top: 5%">
-        <a href="/floor3/{{ name }}" title="Поделиться комнатой"><b>{{ full_name }}</b></a>
-        {% for line in text %}
-            {% if line == "спуститься" %}
-                <br><br>
-                <a href="/floor1">
-                    <button class="button is-white">{{ line }}</button>
-                </a>
-            {% elif line != "спуститься" %}
-                <div>{{ line }}</div>
-            {% endif %}
-        {% endfor %}
+<a href="/floor3" class="overlay" id="notify"></a>
+<div class="notification popup is-primary" style="margin-top: 5%">
+    <a href="/floor3/{{ name }}" title="Поделиться комнатой"><b>{{ full_name }}</b></a>
+    {% for line in text %}
+    {% if line == "спуститься" %}
+    <br><br>
+    <a href="/floor1">
+        <button class="button is-white">{{ line }}</button>
+    </a>
+    {% elif line != "спуститься" %}
+    <div>{{ line }}</div>
+    {% endif %}
+    {% endfor %}
 
-        {% if name > "300" %}
-            {% if name < "307" %}
-               <br>
-                <a href="/room/{{ name }}">
-                    <button class="button is-white"> перейти в комнату </button>
-                </a>
-            {% endif %}
-        {% endif %}
-    </div>
+    {% if name > "300" %}
+    {% if name < "307" %}
+    <br>
+    <a href="/room/{{ name }}">
+        <button class="button is-white">перейти в комнату</button>
+    </a>
+    <br><br>
+    {% endif %}
+    {% endif %}
+
+    {% if name2 != None %}
+    <a href="/floor3/{{ name2 }}" title="Поделиться комнатой"><b>{{ full_name2 }}</b></a>
+    {% for line in text2 %}
+    {% if line == "спуститься" %}
+    <br><br>
+    <a href="/floor1">
+        <button class="button is-white">{{ line }}</button>
+    </a>
+    {% elif line != "спуститься" %}
+    <div>{{ line }}</div>
+    {% endif %}
+    {% endfor %}
+
+    {% if name2 > "300" %}
+    {% if name2 < "307" %}
+    <br>
+    <a href="/room/{{ name2 }}">
+        <button class="button is-white"> перейти в комнату</button>
+    </a>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+</div>
 
 {% endblock %}

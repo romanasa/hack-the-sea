@@ -27,7 +27,8 @@
                     var res = "";
                     // create the html with results
                     for(i in data.results){
-                        res += "<div>"+data.results[i]["full_name"]+"</div>";
+                        res += "<div>"+data.results[i]["name"] +" " +
+								data.results[i]["surname"]+ "</div>";
                     }
                     $("#results").html(res);
                 }

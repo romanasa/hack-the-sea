@@ -64,6 +64,15 @@
 
 </body>
 
+<style>
+        div.hov {
+        }
+
+        div.hov:hover {
+            background: hsl(171, 100%, 41%); /* Путь к файлу с заменяемым рисунком  */
+        }
+    </style>
+
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script>
     function liveSearch(value){
@@ -84,16 +93,16 @@
                         if (data.results[i]["place_num"] !== "") {
                             if (data.results[i]["place_num"] !== "-1") {
                                 var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"] + "#notify";
-                                res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                                res += "<div class = \"hov\"><a href=" + link + ">" + data.results[i]["name"] + " " +
                                     data.results[i]["surname"] + "</a></div>";
                             } else {
                                 var link = "/floor" + floor + "/" + data.results[i]["room"] + "#notify";
-                                res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                                res += "<div class = \"hov\"><a  href=" + link + ">" + data.results[i]["name"] + " " +
                                     data.results[i]["surname"] + "</a></div>";
                                 }
                         } else {
                             var link = "/floor" + floor + "/" + data.results[i]["room"] + "#notify";
-                            res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                            res += "<div class = \"hov\"><a href=" + link + ">" + data.results[i]["name"] + " " +
                                 data.results[i]["type"] + "</a></div>";
                         }
                     }

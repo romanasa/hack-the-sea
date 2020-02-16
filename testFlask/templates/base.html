@@ -77,13 +77,21 @@
                     var res = "";
                     // create the html with results
                     for(i in data.results){
-                        if (data.results[i]["place_num"] !== "") {
-                            var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
 
-                            res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
-                                data.results[i]["surname"] + "</a></div>";
+                            var floor = data.results[i]["room"][0];
+                        if (data.results[i]["place_num"] !== "") {
+
+                            if (data.results[i]["place_num"] !== "-1") {
+                                var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
+                                res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                                    data.results[i]["surname"] + "</a></div>";
+                            } else {
+                                var link = "/floor" + floor + "/" + data.results[i]["room"];
+                                res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
+                                    data.results[i]["surname"] + "</a></div>";
+                                }
                         } else {
-                            var link = "/floor" + data.results[i]["floor"] + "/" + data.results[i]["room"];
+                            var link = "/floor" + floor + "/" + data.results[i]["room"];
                             res += "<div><a href=" + link + ">" + data.results[i]["name"] + " " +
                                 data.results[i]["type"] + "</a></div>";
                         }

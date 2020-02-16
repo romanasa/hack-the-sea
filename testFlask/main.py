@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, after_this_request
+from flask import Blueprint, render_template, request, redirect, url_for, after_this_request, flash
 from flask import session
 
 from testFlask import db

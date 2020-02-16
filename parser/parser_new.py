@@ -60,11 +60,12 @@ with open('users.csv', 'w', encoding='utf-8') as users_file:
                         floor = line.split()[0]
                     elif '–' in line:
                         rng, name = line.split(' – ')
-                        if '-' in rng:
+                        if '-' in rng and rng != '109-110' and rng != '113-114' and rng != '132-133' and \
+                                rng != '309-310' and rng != '323-324':
                             start, finish = rng.split('-')
                         else:
                             start, finish = rng, rng
-                        if int(start.strip('А')) > int(finish.strip('А')):
+                        if start != finish and int(start.strip('А')) > int(finish.strip('А')):
                             start, finish = finish, start
                         while True:
                             if start not in offices:

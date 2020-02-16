@@ -35,7 +35,7 @@ def floor3():
 @main.route('/room/<room_name>')
 def show_room(room_name):
     return render_template('room.html', name=room_name, number=session.get('number', None),
-                           text=session.get('text', None))
+                           text=session.get('text', None), floor = room_name[0])
 
 #
 # @main.route('/room/x')

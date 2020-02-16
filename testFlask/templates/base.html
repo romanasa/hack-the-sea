@@ -12,14 +12,14 @@
 <body>
     <section class="hero is-primary is-fullheight">
     <nav class="navbar is-danger is-fixed-top" role="navigation">
-        <div class="navbar-brand">
+        <div class="navbar-brand is-fixed-top">
             <div class="navbar-burger burger" data-target="navMenu">
               <span></span>
               <span></span>
               <span></span>
             </div>
         </div>
-        <div class="navbar-menu" id="navMenu">
+        <div class="navbar-menu is-fixed-top" id="navMenu">
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ url_for('main.index') }}">Home</a>
                 {% if current_user.is_authenticated %}

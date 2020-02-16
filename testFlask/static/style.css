@@ -54,3 +54,6 @@
     transform: translate(-50%, 0);
     top: 20%;
 }
+.is-fixed-top {
+  background: #00d2b4;
+}

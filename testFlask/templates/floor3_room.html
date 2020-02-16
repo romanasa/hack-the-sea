@@ -31,11 +31,11 @@
     <a href="/room/{{ name }}">
         <button class="button is-white">перейти в комнату</button>
     </a>
-    <br><br>
     {% endif %}
     {% endif %}
 
     {% if name2 != None %}
+    <br><br><br>
     <a href="/floor3/{{ name2 }}" title="Поделиться комнатой"><b>{{ full_name2 }}</b></a>
     {% for line in text2 %}
     {% if line == "спуститься" %}

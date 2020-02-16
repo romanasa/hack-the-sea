@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
+from transliterate import translit
 from werkzeug.security import generate_password_hash, check_password_hash
 from testFlask import db
 from testFlask.models import User, Room, Place
@@ -97,5 +98,17 @@ def settings_post():
     if current_user.surname is None:
         current_user.surname = request.form.get('surname')
 
-    current_user.place = place
+    def to_en(s):
+        return translit(s.lower(), 'ru', reversed=True)
+
+    def get_full_name(sur, name, room, email):
+        suren = to_en(sur)
+        namen = to_en(name)
+        return sur + ' ' + name + ' ' + sur + ' ' + suren + ' ' + namen + ' ' \
+            + suren + ' ' + room + ' ' + email
+
+    current_user.full_name = get_full_name(current_user.surname, current_user.name, room_num, current_user.email)
+
+    current_user.place_id = place.id
+    db.session.commit()
     return redirect(url_for('main.index'))

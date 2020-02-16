@@ -40,6 +40,8 @@ with open('config.ini', 'r', encoding='utf-8') as file:
                     break
                 start = str(int(start) + 1) if start[-1] != 'А' else str(int(start[:-1]) + 1) + 'А'
 
+of2id = dict()
+
 with open('users.csv', 'w', encoding='utf-8') as users_file:
     with open('places.csv', 'w', encoding='utf-8') as places_file:
         with open('rooms.csv', 'w', encoding='utf-8') as rooms_file:
@@ -68,6 +70,7 @@ with open('users.csv', 'w', encoding='utf-8') as users_file:
                             if start not in offices:
                                 offices[start] = [-1]
                             room_id += 1
+                            of2id[start] = room_id
                             print(room_id, floor, start, name, 0, 0, sep=';', file=rooms_file)
                             if start == finish:
                                 break
@@ -89,3 +92,8 @@ with open('users.csv', 'w', encoding='utf-8') as users_file:
                         print(user_id, email(sur, name), "12345", sur, name, place_id, sep=';', file=users_file)
                         if f:
                             print(place_id, place, room_id, sep=';', file=places_file)
+            for key, value in offices.items():
+                for place in value:
+                    place_id, f = get_place_id(key, place)
+                    if f:
+                        print(place_id, place, of2id[key], sep=';', file=places_file)

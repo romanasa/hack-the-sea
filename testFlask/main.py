@@ -11,7 +11,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('floor1.html')
 
 
 @main.route('/profile')
@@ -35,7 +35,7 @@ def floor3():
 @main.route('/room/<room_name>')
 def show_room(room_name):
     return render_template('room.html', name=room_name, number=session.get('number', None),
-                           text=session.get('text', None))
+                           text=session.get('text', None), floor = room_name[0])
 
 #
 # @main.route('/room/x')
@@ -90,7 +90,7 @@ def show_user_room(room_name, number):
             text += [user.name + " " + user.surname + " " + user.email]
         session['text'] = text
         return redirect('/room/' + room_name + '#place' + number)
-    return render_template('room.html', name=room_name)
+    return render_template('room.html', name=room_name, floor=room_name[0])
 
 
 @main.route('/antresol/<antresol_name>/<number>')

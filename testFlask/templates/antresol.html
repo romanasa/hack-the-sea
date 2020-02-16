@@ -2,28 +2,43 @@
 
 {% block content %}
 
-<h1 class="title"></h1>
+    <h1 class="title"></h1>
 
-  <div class="buttons is-fullwidth is-centered">
-    <a href="/room/{{name}}"><button class="button is-primary is-large"> {{name}}</button></a>
-    <a href="/antresol/{{name}}"><button class="button is-primary is-inverted is-outlined is-large"> {{name}}А </button></a>
-  </div>
+    <div class="buttons is-fullwidth is-centered">
+        <a href="/room/{{ name }}">
+            <button class="button is-primary is-large"> {{ name }}</button>
+        </a>
+        <a href="/antresol/{{ name }}">
+            <button class="button is-primary is-inverted is-outlined is-large"> {{ name }}А</button>
+        </a>
+    </div>
 
-<div class="map_image">
-  <img src="..\static\106_antresol.svg" alt="antresol" width="60%" />
-  <a href="room/13" style="top: 18.25%; left: 29.100000000000005%; width: 3.8000000000000003%; height: 8.125%;"></a>
-  <a href="room/14" style="top: 18.375%; left: 33.1%; width: 3.4999999999999996%; height: 8.0%;"></a>
-  <a href="room/16" style="top: 18.0%; left: 46.9%; width: 3.8000000000000003%; height: 8.125%;"></a>
-  <a href="room/17" style="top: 18.0%; left: 50.8%; width: 3.7%; height: 8.125%;"></a>
-  <a href="room/18" style="top: 18.125%; left: 65.3%; width: 3.7%; height: 7.875%;"></a>
-  <a href="room/19" style="top: 18.0%; left: 69.2%; width: 3.5999999999999996%; height: 8.0%;"></a>
-  <a href="room/20" style="top: 35.75%; left: 69.10000000000001%; width: 3.7%; height: 8.0%;"></a>
-  <a href="room/21" style="top: 55.125%; left: 62.1%; width: 6.4%; height: 4.375%;"></a>
-  <a href="room/22" style="top: 55.00000000000001%; left: 52.4%; width: 6.4%; height: 4.5%;"></a>
-  <a href="room/23" style="top: 54.87499999999999%; left: 42.8%; width: 6.3%; height: 4.75%;"></a>
-  <a href="room/24" style="top: 54.625%; left: 32.099999999999994%; width: 3.4999999999999996%; height: 8.0%;"></a>
-  <a href="room/лестница" style="top: 64.75%; left: 23.500000000000004%; width: 53.9%; height: 22.0%;"></a>
+    <div class="map_image">
+        <img src="..\static\106_antresol.svg" alt="antresol" width="60%"/>
 
-</div>
+        <style>
+            a.hov {
+            }
+
+            a.hov:hover {
+                opacity: 0.4;
+                background: #00b2b4; /* Путь к файлу с заменяемым рисунком  */
+            }
+        </style>
+
+        <a href="room/13" class = "hov" style="top: 18.25%; left: 29.100000000000005%; width: 3.8000000000000003%; height: 8.125%;"></a>
+        <a href="room/14" class = "hov" style="top: 18.375%; left: 33.1%; width: 3.4999999999999996%; height: 8.0%;"></a>
+        <a href="room/16" class = "hov" style="top: 18.0%; left: 46.9%; width: 3.8000000000000003%; height: 8.125%;"></a>
+        <a href="room/17" class = "hov" style="top: 18.0%; left: 50.8%; width: 3.7%; height: 8.125%;"></a>
+        <a href="room/18" class = "hov" style="top: 18.125%; left: 65.3%; width: 3.7%; height: 7.875%;"></a>
+        <a href="room/19" class = "hov" style="top: 18.0%; left: 69.2%; width: 3.5999999999999996%; height: 8.0%;"></a>
+        <a href="room/20" class = "hov" style="top: 35.75%; left: 69.10000000000001%; width: 3.7%; height: 8.0%;"></a>
+        <a href="room/21" class = "hov" style="top: 55.125%; left: 62.1%; width: 6.4%; height: 4.375%;"></a>
+        <a href="room/22" class = "hov" style="top: 55.00000000000001%; left: 52.4%; width: 6.4%; height: 4.5%;"></a>
+        <a href="room/23" class = "hov" style="top: 54.87499999999999%; left: 42.8%; width: 6.3%; height: 4.75%;"></a>
+        <a href="room/24" class = "hov" style="top: 54.625%; left: 32.099999999999994%; width: 3.4999999999999996%; height: 8.0%;"></a>
+        <a href="room/лестница" style="top: 64.75%; left: 23.500000000000004%; width: 53.9%; height: 22.0%;"></a>
+
+    </div>
 
 {% endblock %}

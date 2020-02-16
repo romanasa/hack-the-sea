@@ -71,7 +71,7 @@
         value = value.trim(); // remove any spaces around the text
         if(value !== ""){ // don't make requests with an empty string
             $.ajax({
-                url: "search",
+                url: "/search",
                 data: {searchText: value},
                 dataType: "json",
                 success: function(data){

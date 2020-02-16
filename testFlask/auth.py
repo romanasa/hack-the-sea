@@ -107,7 +107,8 @@ def settings_post():
         return sur + ' ' + name + ' ' + sur + ' ' + suren + ' ' + namen + ' ' \
             + suren + ' ' + room + ' ' + email
 
-    current_user.full_name = get_full_name(current_user.surname, current_user.name, room_num, current_user.email)
+    current_user.full_name = get_full_name(current_user.surname.lower(), current_user.name.lower(), room_num.lower(),
+                                           current_user.email.lower())
 
     current_user.place_id = place.id
     db.session.commit()

@@ -28,10 +28,10 @@
                     // create the html with results
                     for(i in data.results){
 
-                    	var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place"];
+                    	var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
 
-                        res += "<a href=" + link + ">"+data.results[i]["name"] +" " +
-								data.results[i]["surname"]+ "</a>";
+                        res += "<div><a href=" + link + ">"+data.results[i]["name"] +" " +
+								data.results[i]["surname"]+ "</a></div>";
                     }
                     $("#results").html(res);
                 }

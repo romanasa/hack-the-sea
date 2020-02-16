@@ -82,6 +82,7 @@ def show_user_room(room_name, number):
     # users = User.query.filter_by(room_id)
     session['number'] = number
 
+    room = Room.query.filter_by(name=room_name).first()
     place = Place.query.join(Room, Place.room_id == Room.id) \
         .filter(Place.number == number).filter(Room.name == room_name).first()
     users = None
@@ -91,6 +92,7 @@ def show_user_room(room_name, number):
         for user in users:
             text += [user.name + " " + user.surname + " " + user.email]
         session['text'] = text
+        session['type'] = room.type
         return redirect('/room/' + room_name + '#place' + number)
     return render_template('room.html', name=room_name, floor=room_name[0])
 
@@ -100,6 +102,7 @@ def show_user_antresol(antresol_name, number):
     # users = User.query.filter_by(room_id)
     session['number'] = number
 
+    room = Room.query.filter_by(name=antresol_name).first()
     place = Place.query.join(Room, Place.room_id == Room.id) \
         .filter(Place.number == number).filter(Room.name == antresol_name + 'А').first()
     text = []
@@ -108,6 +111,7 @@ def show_user_antresol(antresol_name, number):
         for user in users:
             text += [user.name + " " + user.surname + " " + user.email]
         session['text'] = text
+        session['type'] = room.type
         return redirect('/antresol/' + antresol_name + '#place' + number)
     return redirect('/antresol/{}'.format(antresol_name))
 

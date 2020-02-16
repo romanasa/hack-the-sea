@@ -45,7 +45,8 @@ def show_room(room_name):
 
 @main.route('/antresol/<antresol_name>')
 def show_antresol(antresol_name):
-    return render_template('antresol.html', name=antresol_name)
+    return render_template('antresol.html', name=antresol_name, number=session.get('number', None),
+                           text=session.get('text', None))
 
 
 @main.route('/navigation')
@@ -75,7 +76,7 @@ def find_path():
 # def show_user(room_name, number):
 #     users = User.query.filter_by(room_id)
 @main.route('/room/<room_name>/<number>')
-def show_user(room_name, number):
+def show_user_room(room_name, number):
     # users = User.query.filter_by(room_id)
     session['number'] = number
 
@@ -90,6 +91,23 @@ def show_user(room_name, number):
         session['text'] = text
         return redirect('/room/' + room_name + '#place' + number)
     return render_template('room.html', name=room_name)
+
+
+@main.route('/antresol/<antresol_name>/<number>')
+def show_user_antresol(antresol_name, number):
+    # users = User.query.filter_by(room_id)
+    session['number'] = number
+
+    place = Place.query.join(Room, Place.room_id == Room.id) \
+        .filter(Place.number == number).filter(Room.name == antresol_name + 'А').first()
+    text = []
+    if place is not None:
+        users = place.users
+        for user in users:
+            text += [user.name + " " + user.surname + " " + user.email]
+        session['text'] = text
+        return redirect('/antresol/' + antresol_name + '#place' + number)
+    return redirect('/antresol/{}'.format(antresol_name))
 
 
 @main.route("/search")

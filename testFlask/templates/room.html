@@ -9,11 +9,8 @@
 
     <div class="map_image">
 
-        {% if number %}
-            <img src="..\static\colored_places\place{{number}}.svg" alt="room" width="60%"/>
-        {% elif not number %}
-            <img src="..\static\106.svg" alt="room" width="60%"/>
-    {% endif %}
+
+        <img src="..\static\106.svg" alt="room" width="60%"/>
 
         <style>
             a.hov {
@@ -24,15 +21,16 @@
             }
         </style>
 
-        <a href="/room/{{name}}/1" class = "hov"
+
+            <a href="/room/{{name}}/1" class = "hov"
            style="top: 50.625%; left: 26.099999999999998%; width: 3.5999999999999996%; height: 7.875%;"></a>
         <a href="/room/{{name}}/2" class = "hov"
            style="top: 34.125%; left: 26.099999999999998%; width: 3.4999999999999996%; height: 7.75%;"></a>
         <a href="/room/{{name}}/3" class = "hov"
            style="top: 18.0%; left: 26.099999999999998%; width: 3.5999999999999996%; height: 7.75%;"></a>
-        <a href="#place4" class = "hov" style="top: 17.875%; left: 38.800000000000004%; width: 3.7%; height: 7.875%;"></a>
-        <a href="#place9" class = "hov" style="top: 17.25%; left: 56.8%; width: 3.7%; height: 8.0%;"></a>
-        <a href="#place10" class = "hov"
+        <a href="/room/{{name}}/4" class = "hov" style="top: 17.875%; left: 38.800000000000004%; width: 3.7%; height: 7.875%;"></a>
+        <a href="/room/{{name}}/9" class = "hov" style="top: 17.25%; left: 56.8%; width: 3.7%; height: 8.0%;"></a>
+        <a href="/room/{{name}}/10" class = "hov"
            style="top: 17.375%; left: 69.7%; width: 3.5999999999999996%; height: 8.0%;"></a>
         <a href="/room/{{name}}/8" class = "hov"
            style="top: 33.625%; left: 56.9%; width: 3.5999999999999996%; height: 7.875%;"></a>
@@ -42,9 +40,11 @@
            style="top: 50.24999999999999%; left: 38.7%; width: 3.8000000000000003%; height: 8.0%;"></a>
         <a href="/room/{{name}}/7" class = "hov"
            style="top: 50.24999999999999%; left: 57.0%; width: 3.4999999999999996%; height: 8.0%;"></a>
-        <a href="#place12" class = "hov" style="top: 49.8%; left: 69.7%; width: 3.5999999999999996%; height: 8.0%;"></a>
-        <a href="#place10" class = "hov" style="top: 33.05%; left: 69.5%; width: 3.7%; height: 7.875%;"></a>
-        <a href="room/лестница" style="top: 63.04999999999999%; left: 22.1%; width: 9.3%; height: 24.0%;"></a>
+        <a href="/room/{{name}}/12" class = "hov" style="top: 49.8%; left: 69.7%; width: 3.5999999999999996%; height: 8.0%;"></a>
+        <a href="/room/{{name}}/10" class = "hov" style="top: 33.05%; left: 69.5%; width: 3.7%; height: 7.875%;"></a>
+
+
+             <a href="room/лестница" style="top: 63.04999999999999%; left: 22.1%; width: 9.3%; height: 24.0%;"></a>
         <a href="room/лестница" style="top: 63.04999999999999%; left: 69%; width: 9.3%; height: 24.0%;"></a>
     </div>
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8">
@@ -65,7 +65,7 @@
 
 </body>
 
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script>
     function liveSearch(value){
         value = value.trim(); // remove any spaces around the text
@@ -78,8 +78,11 @@
                     var res = "";
                     // create the html with results
                     for(i in data.results){
-                        res += "<div>"+data.results[i]["name"] +" " +
-								data.results[i]["surname"]+ "</div>";
+
+                    	var link = "/room/" + data.results[i]["room"] + "/" + data.results[i]["place_num"];
+
+                        res += "<div><a href=" + link + ">"+data.results[i]["name"] +" " +
+								data.results[i]["surname"]+ "</a></div>";
                     }
                     $("#results").html(res);
                 }
@@ -113,6 +116,4 @@
         });
       });
     }
-</script>
-
-</html>
+</script></html>

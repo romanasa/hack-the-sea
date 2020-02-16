@@ -91,6 +91,8 @@ def show_user_room(room_name, number):
         users = place.users
         for user in users:
             text += [user.name + " " + user.surname + " " + user.email]
+        if not text:
+            text = ['Пустое место']
         session['text'] = text
         session['type'] = room.type
         return redirect('/room/' + room_name + '#place' + number)
@@ -110,6 +112,8 @@ def show_user_antresol(antresol_name, number):
         users = place.users
         for user in users:
             text += [user.name + " " + user.surname + " " + user.email]
+        if not text:
+            text = ['Пустое место']
         session['text'] = text
         session['type'] = room.type
         return redirect('/antresol/' + antresol_name + '#place' + number)
@@ -126,6 +130,8 @@ def show_floor1_room_notif(room_name):
             users = place.users
             for user in users:
                 text += [user.name + " " + user.surname + " " + user.email]
+        if not text:
+            text = ['Пустая комната']
         name_ = 'Комната ' + room_name + ' ' + room.type
     else:
         text = []
@@ -146,6 +152,8 @@ def show_floor3_room_notif(room_name):
             users = place.users
             for user in users:
                 text += [user.name + " " + user.surname + " " + user.email]
+        if not text:
+            text = ['Пустая комната']
         name_ = 'Комната ' + room_name + ' ' + room.type
     else:
         text = []

@@ -14,14 +14,14 @@
 
     <a href="/floor1" class="overlay" id="notify"></a>
     <div class="notification popup is-primary is-light" style="margin-top: 5%">
-        <div><b>{{ full_name }}</b></div>
+        <a href="/floor1/{{ name }}" title="Поделиться комнатой"><b>{{ full_name }}</b></a>
         {% for line in text %}
             <div>{{ line }}</div>
         {% endfor %}
 
         {% if name > "104" %}
             {% if name < "109" %}
-        <br>
+                <br>
                 <a href="/room/{{ name }}">
                     <button class="button is-white"> перейти в комнату </button>
                 </a>

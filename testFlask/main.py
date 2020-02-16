@@ -37,7 +37,7 @@ def show_room(room_name):
     if room_name[-1] == 'А':
         return redirect('/antresol/' + room_name[:-1])
     return render_template('room.html', name=room_name, number=session.get('number', None),
-                           text=session.get('text', None), floor = room_name[0])
+                           text=session.get('text', None), floor=room_name[0])
 
 #
 # @main.route('/room/x')
@@ -48,7 +48,7 @@ def show_room(room_name):
 @main.route('/antresol/<antresol_name>')
 def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name, number=session.get('number', None),
-                           text=session.get('text', None))
+                           text=session.get('text', None), floor=antresol_name[0])
 
 
 @main.route('/navigation')

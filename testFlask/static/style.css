@@ -72,3 +72,20 @@
 	top:-40px;
 	left:-50px;
 	}
+
+
+.navbar-menu {
+    color: black;
+    background: white;
+}
+
+.navbar-menu .navbar-end .navbar-item .navbar-link {
+    color: black;
+    background: white;
+}
+
+
+.navbar-menu .navbar-end .navbar-item .navbar-dropdown {
+    color: black;
+    background: white;
+}

@@ -6,7 +6,7 @@ for line in open(input, "r"):
     if (len(v) == 0): continue
     if (not v[0].startswith("<area")): continue
     title = v[3].split('\"')[1]
-    href = "room/" + title
+    href = "#room/" + title
     coords = v[5].split('\"')[1].split(',')
    # print(v)
     for i in range(4): coords[i] = float(coords[i])

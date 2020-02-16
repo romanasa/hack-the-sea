@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Вы пришли в антресоль {{ name }}!
-</h1>
 
+  <div class="buttons is-fullwidth is-centered">
+    <a href="/room/{{name}}"><button class="button is-primary is-large"> {{name}}</button></a>
+    <a href="/antresol/{{name}}"><button class="button is-primary is-inverted is-outlined is-large"> {{name}}А </button></a>
+  </div>
 
 <div class="map_image">
   <img src="..\static\106_antresol.svg" alt="antresol" width="60%" />

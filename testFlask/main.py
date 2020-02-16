@@ -131,8 +131,21 @@ def show_floor1_room_notif(room_name):
 
 
 @main.route('/floor3/<room_name>')
-def show_floor3_room(room_name):
-    return render_template('floor3_room.html', name=room_name)
+def show_floor3_room_notif(room_name):
+    room = Room.query.filter_by(name=room_name).first()
+    if room is not None:
+        places = Place.query.filter_by(room_id=room.id).all()
+        text = []
+        for place in places:
+            users = place.users
+            for user in users:
+                text += [user.name + " " + user.surname + " " + user.email]
+        name_ = 'Комната ' + room_name + ' ' + room.type
+    else:
+        text = []
+        if room_name.startswith('lyft'):
+            name_ = 'Лифт'
+    return render_template('floor3_room.html', name=room_name, full_name=name_, text=text)
 
 
 @main.route("/search")

@@ -48,7 +48,7 @@ def show_room(room_name):
 @main.route('/antresol/<antresol_name>')
 def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name, number=session.get('number', None),
-                           text=session.get('text', None), type=session.get('type', None), floor = room_name[0])
+                           text=session.get('text', None), type=session.get('type', None), floor = antresol_name[0])
 
 
 @main.route('/navigation')

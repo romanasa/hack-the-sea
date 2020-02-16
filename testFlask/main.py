@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from testFlask import db
 from flask_login import login_required, current_user
+from testFlask.models import User, AlchemyEncoder
+import json
 
 main = Blueprint('main', __name__)
 
@@ -36,3 +38,14 @@ def show_room(room_name):
 @main.route('/antresol/<antresol_name>')
 def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name)
+
+
+@main.route("/search")
+def search():
+    text = "%{}%".format(request.args['searchText'])  # get the text to search for
+    # create an array with the elements of BRAZIL_STATES that contains the string
+    # the case is ignored
+    result = User.query.filter(User.full_name.like(text)).all()[:10]
+    # result = [c for c in BRAZIL_STATES if text.lower() in c.lower()]
+    # return as JSON
+    return json.dumps({"results": result}, cls=AlchemyEncoder)

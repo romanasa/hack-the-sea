@@ -40,12 +40,17 @@ def show_antresol(antresol_name):
     return render_template('antresol.html', name=antresol_name)
 
 
+# @main.route('/room/<room_name>/<number>')
+# def show_user(room_name, number):
+#     users = User.query.filter_by(room_id)
+
+
 @main.route("/search")
 def search():
     text = "%{}%".format(request.args['searchText'])  # get the text to search for
     # create an array with the elements of BRAZIL_STATES that contains the string
     # the case is ignored
-    result = User.query.filter(User.full_name.like(text)).all()[:10]
+    result = User.query.filter(User.full_name.like(text.lower())).all()[:10]
     # result = [c for c in BRAZIL_STATES if text.lower() in c.lower()]
     # return as JSON
     return json.dumps({"results": result}, cls=AlchemyEncoder)

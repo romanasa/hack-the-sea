@@ -90,7 +90,7 @@ def show_user_room(room_name, number):
             text += [user.name + " " + user.surname + " " + user.email]
         session['text'] = text
         return redirect('/room/' + room_name + '#place' + number)
-    return render_template('room.html', name=room_name)
+    return render_template('room.html', name=room_name, floor=room_name[0])
 
 
 @main.route('/antresol/<antresol_name>/<number>')

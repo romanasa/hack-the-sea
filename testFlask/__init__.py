@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, flash
+from flask import Flask, redirect, url_for, request, flash, session, after_this_request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 
@@ -39,11 +39,18 @@ def create_app():
     @app.before_request
     def before_request():
         allow = ['auth.settings', 'auth.settings_post', 'auth.logout']
+        #
+        # @after_this_request
+        # def remember_language(response):
+        #     session.clear()
+        #     return response
+
         if request.endpoint not in allow and \
                 current_user.is_authenticated and\
                 (current_user.name is None or current_user.surname is None):
             flash('Пожалуйста, заполните информацию')
             return redirect(url_for('auth.settings'))
+
 
     return app
 

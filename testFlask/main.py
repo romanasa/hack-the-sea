@@ -115,6 +115,11 @@ def show_floor1_room(room_name):
     return render_template('floor1_room.html', name=room_name)
 
 
+@main.route('/floor3/<room_name>')
+def show_floor3_room(room_name):
+    return render_template('floor3_room.html', name=room_name)
+
+
 @main.route("/search")
 def search():
     text = "%{}%".format(request.args['searchText'])  # get the text to search for

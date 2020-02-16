@@ -7,11 +7,11 @@
 </h1>
 
     <div class="buttons is-fullwidth is-centered">
-        <a href="/floor1">
+        <a href="/floor3">
             <button class="button is-primary is-inverted is-outlined is-large">на этаж</button>
         </a>
-        {% if name > "104" %}
-            {% if name < "109" %}
+        {% if name > "300" %}
+            {% if name < "307" %}
             <a href="/room/{{ name }}">
                 <button class="button is-primary is-large"> в комнату {{ name }}</button>
             </a>
@@ -21,7 +21,7 @@
 
 <div class="map_image">
 
-    <img src="..\static\colored_places\{{ name }}.svg" alt="floor_1"/>
+    <img src="..\static\colored_places\{{ name }}.svg" alt="floor_3"/>
 
     <a href="#" class="overlay" id="place{{ name }}"></a>
     <div class="notification popup is-primary is-light">
